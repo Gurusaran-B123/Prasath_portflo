@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guruprasath | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A;
+    --bg-alt:#121212;
+    --card: #161616;
+    --card-2: #1E1414;
+    --primary: #E4202B;
+    --primary-light: #FF5C61;
+    --accent: #FFFFFF;
+    --accent-soft: #FFFFFF;
+    --accent-deep: #D6D6D6;
+    --text: #F5F5F5;
+    --text-dim:#A8A8A8;
+    --border: rgba(255,255,255,0.10);
+    --radius: 18px;
+    --grad: linear-gradient(120deg,#E4202B,#FF5C61,#FFFFFF,#E4202B);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family: 'Inter', 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background:
+      radial-gradient(circle at 10% 5%, rgba(228,32,43,0.22), transparent 38%),
+      radial-gradient(circle at 92% 90%, rgba(255,255,255,0.06), transparent 42%),
+      linear-gradient(180deg, #0A0A0A 0%, #161010 50%, #0A0A0A 100%);
+    background-attachment: fixed;
+    color: var(--text-dim);
+    line-height: 1.75;
+    font-size: 16px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1,h2,h3,
+  .logo,
+  .achieve-card h3,
+  .skill-card h3,
+  .timeline-item h3{
+    font-family: 'Sora', 'Segoe UI', sans-serif;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  /* animated soft background blobs */
+  body::before, body::after{
+    content:'';
+    position: fixed;
+    width: 460px; height: 460px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: .28;
+    z-index: -1;
+    animation: float 14s ease-in-out infinite alternate;
+  }
+  body::before{
+    background: var(--primary);
+    top: -140px; left: -140px;
+  }
+  body::after{
+    background: var(--accent);
+    bottom: -160px; right: -120px;
+    animation-delay: 3s;
+  }
+  @keyframes float{
+    0%{ transform: translate(0,0) scale(1); }
+    100%{ transform: translate(40px,50px) scale(1.15); }
+  }
+
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .container{
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    background: rgba(14,9,24,0.65);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 5%;
+  }
+
+  .logo{
+    font-size: 1.35rem;
+    font-weight: 700;
+    background: var(--grad);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 6s linear infinite;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes gradientMove{
+    0%{ background-position: 0% 50%; }
+    100%{ background-position: 300% 50%; }
+  }
+
+  .nav-links{
+    display:flex;
+    gap: 32px;
+  }
+
+  .nav-links a{
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: color .25s;
+    position: relative;
+    padding-bottom: 4px;
+  }
+
+  .nav-links a:hover{ color: var(--accent); }
+
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:-6px;
+    width:0%; height:2px;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width .3s;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .menu-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    background:none;
+    border:none;
+  }
+  .menu-toggle span{
+    width:26px;height:2.5px;background:var(--accent);border-radius:2px;
+    transition: all .3s;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height: 92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 60px 5%;
+  }
+
+  .hero-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 60px;
+    width:100%;
+    max-width: 1100px;
+    flex-wrap: wrap;
+  }
+
+  .hero-text{ flex:1 1 350px; }
+
+  .hero-text p.greet{
+    color: var(--accent);
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    font-weight: 600;
+    font-style: italic;
+    position: relative;
+    padding-left: 26px;
+  }
+  .hero-text p.greet::before{
+    content:'';
+    position:absolute;
+    left:0; top:50%;
+    transform: translateY(-50%);
+    width: 18px; height:2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .hero-text h1{
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height:1.12;
+    margin-bottom: 14px;
+  }
+
+  .hero-text h1 span{
+    background: var(--grad);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientMove 6s linear infinite;
+  }
+
+  .hero-text h2{
+    font-family: 'Sora', 'Segoe UI', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-light);
+    margin-bottom: 22px;
+  }
+
+  .hero-text .desc{
+    color: var(--text-dim);
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .btn-group{
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn{
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all .3s;
+    border: 2px solid transparent;
+    cursor:pointer;
+    display:inline-block;
+  }
+
+  .btn-primary{
+    background: linear-gradient(155deg, var(--accent-soft), var(--accent) 55%, var(--accent-deep));
+    color: var(--primary);
+    box-shadow:
+      0 10px 24px rgba(0,0,0,0.3),
+      inset 0 2px 3px rgba(255,255,255,0.7),
+      inset 0 -6px 10px rgba(0,0,0,0.35);
+  }
+  .btn-primary:hover{
+    transform: translateY(-3px);
+    box-shadow:
+      0 16px 30px rgba(0,0,0,0.38),
+      inset 0 2px 3px rgba(255,255,255,0.8),
+      inset 0 -6px 10px rgba(0,0,0,0.4);
+  }
+  .btn-primary:active{
+    transform: translateY(0);
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.5);
+  }
+
+  .btn-outline{
+    border-color: var(--primary);
+    color: var(--primary-light);
+    background: var(--card);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.5), -4px -4px 10px rgba(255,255,255,0.05);
+  }
+  .btn-outline:hover{
+    background: var(--primary);
+    color:#fff;
+    transform: translateY(-3px);
+  }
+
+  /* IMAGE PLACEHOLDER - replace bg image or <img> src with your link */
+  .hero-img{
+    flex: 0 0 260px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 3px solid transparent;
+    background-image: linear-gradient(var(--card),var(--card)), var(--grad);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    background-size: 100%, 300% auto;
+    animation: gradientMove 6s linear infinite;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    position: relative;
+    box-shadow:
+      0 20px 50px rgba(228,32,43,0.28),
+      inset 0 2px 4px rgba(255,255,255,0.08),
+      inset 0 -4px 8px rgba(0,0,0,0.35);
+  }
+
+  .hero-img img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:none; /* shows automatically once you add a src to the img tag */
+    border-radius: 50%;
+  }
+
+  .hero-img .placeholder-text{
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align:center;
+    padding: 10px;
+  }
+
+  /* ---------- SECTION COMMON ---------- */
+  section{ padding: 100px 0; }
+
+  .section-title{
+    text-align:center;
+    margin-bottom: 56px;
+  }
+
+  .section-title p.tag{
+    color: var(--accent);
+    font-size: 0.95rem;
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-style: italic;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 10px;
+  }
+  .section-title p.tag::before,
+  .section-title p.tag::after{
+    content:'';
+    width: 22px; height:2px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: .6;
+  }
+
+  .section-title h2{
+    font-size: 2.1rem;
+    font-weight: 800;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:flex;
+    gap: 44px;
+    align-items:center;
+    flex-wrap: wrap;
+  }
+
+  .about-img{
+    flex: 0 0 280px;
+    width: 280px;
+    height: 320px;
+    border-radius: var(--radius);
+    background: var(--card);
+    border: 1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  }
+
+  .about-img img{
+    width:100%;height:100%;object-fit:cover;display:none;
+  }
+
+  .about-text{ flex: 1 1 400px; }
+
+  .about-text p{ color: var(--text-dim); margin-bottom: 16px; }
+
+  .info-list{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .info-list li{
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    padding-left: 16px;
+    border-left: 2px solid var(--border);
+  }
+
+  .info-list li b{ color: var(--text); display:block; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:2px; font-weight:600; color:var(--primary-light); }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 24px;
+  }
+
+  .skill-card{
+    background: linear-gradient(160deg, var(--card-2), var(--card) 60%);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 26px;
+    transition: transform .3s, box-shadow .3s;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+  }
+
+  .skill-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+  }
+
+  .skill-card h3{
+    font-size: 1.02rem;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .skill-bar{
+    margin-bottom: 14px;
+  }
+
+  .skill-bar .label{
+    display:flex;
+    justify-content:space-between;
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .bar-bg{
+    width:100%;
+    height: 7px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow:hidden;
+  }
+
+  .bar-fill{
+    height:100%;
+    background: var(--grad);
+    background-size: 300% auto;
+    animation: gradientMove 4s linear infinite;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1.2s ease;
+  }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .achieve-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 26px;
+  }
+
+  .achieve-card{
+    background: linear-gradient(160deg, var(--card-2), var(--card) 60%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 28px;
+    text-align:center;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+    transition: transform .3s, box-shadow .3s;
+  }
+
+  .achieve-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 22px 42px rgba(0,0,0,0.45);
+  }
+
+  .achieve-icon{
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--grad);
+    background-size: 300% auto;
+    animation: gradientMove 5s linear infinite;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 1.5rem;
+    color:#fff;
+    box-shadow:
+      0 8px 18px rgba(228,32,43,0.35),
+      inset 0 2px 3px rgba(255,255,255,0.5),
+      inset 0 -4px 6px rgba(0,0,0,0.2);
+  }
+
+  .achieve-card h3{
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+  }
+
+  .achieve-card p{
+    color: var(--text-dim);
+    font-size: 0.92rem;
+  }
+
+  /* ---------- EDUCATION ---------- */
+  .timeline{
+    position:relative;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-left: 32px;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline-item{
+    position:relative;
+    margin-bottom: 38px;
+  }
+
+  .timeline-item::before{
+    content:'';
+    position:absolute;
+    left:-39px;
+    top:4px;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background: var(--grad);
+    background-size: 300% auto;
+    animation: gradientMove 5s linear infinite;
+    box-shadow: 0 0 0 5px rgba(228,32,43,0.15);
+  }
+
+  .timeline-item .date{
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display:inline-block;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .timeline-item h3{ font-size: 1.05rem; margin-bottom: 6px; }
+
+  .timeline-item p{ color: var(--text-dim); font-size: 0.9rem; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{
+    display:flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .contact-info{
+    flex: 1 1 280px;
+  }
+
+  .contact-info p{ color: var(--text-dim); margin-bottom: 24px; }
+
+  .contact-item{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 18px;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+
+  .contact-item .ic{
+    width: 40px;height:40px;
+    border-radius:50%;
+    background: linear-gradient(160deg, var(--card-2), var(--card));
+    border: 1px solid var(--border);
+    display:flex;align-items:center;justify-content:center;
+    color: var(--accent);
+    flex-shrink:0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+  }
+
+  .social-links{
+    display:flex;
+    gap: 14px;
+    margin-top: 26px;
+  }
+
+  .social-links a{
+    width: 100%;height:44px;
+    border-radius:15px;
+    background: linear-gradient(155deg, var(--accent-soft), var(--accent) 55%, var(--accent-deep));
+    color: var(--primary);
+    border: none;
+    display:flex;align-items:center;justify-content:center;
+    transition: all .3s;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    box-shadow:
+      0 6px 14px rgba(0,0,0,0.28),
+      inset 0 2px 2px rgba(255,255,255,0.7),
+      inset 0 -4px 6px rgba(0,0,0,0.3);
+  }
+
+  .social-links a:hover{
+    transform: translateY(-4px);
+    box-shadow:
+      0 12px 22px rgba(0,0,0,0.35),
+      inset 0 2px 2px rgba(255,255,255,0.8),
+      inset 0 -4px 6px rgba(0,0,0,0.35);
+  }
+
+  form.contact-form{
+    flex: 1 1 320px;
+    display:flex;
+    flex-direction:column;
+    gap: 16px;
+  }
+
+  .contact-form input,
+  .contact-form textarea{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline:none;
+    transition: box-shadow .3s, border-color .3s;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(228,32,43,0.2);
+  }
+
+  .contact-form textarea{ resize: vertical; min-height: 120px; }
+
+  .form-msg{
+    font-size: 0.85rem;
+    color: var(--accent);
+    min-height: 18px;
+    font-weight: 600;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;
+    padding: 30px 5%;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    background: var(--bg-alt);
+  }
+
+  /* ---------- SCROLL TOP ---------- */
+  #scrollTop{
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--grad);
+    background-size: 300% auto;
+    animation: gradientMove 5s linear infinite;
+    color:#fff;
+    border:none;
+    font-size: 1.1rem;
+    cursor:pointer;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index: 90;
+    box-shadow:
+      0 8px 22px rgba(228,32,43,0.35),
+      inset 0 2px 3px rgba(255,255,255,0.35),
+      inset 0 -3px 5px rgba(0,0,0,0.2);
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+  .fade-up{
+    opacity:0;
+    transform: translateY(30px);
+    transition: all .7s ease;
+  }
+  .fade-up.show{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  /* =====================================================
+     TABLET (<=992px)
+  ===================================================== */
+  @media (max-width: 992px){
+    .hero-text h1{ font-size: 2.4rem; }
+    .hero-content{ justify-content:center; text-align:center; }
+    .hero-text p.greet{ justify-content:center; }
+    .hero-text .desc{ margin-left:auto; margin-right:auto; }
+    .btn-group{ justify-content:center; }
+    .about-grid{ justify-content:center; text-align:center; }
+    .info-list{ text-align:left; }
+  }
+
+  /* =====================================================
+     MOBILE (<=768px)
+  ===================================================== */
+  @media (max-width: 768px){
+    .nav-links{
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      background: var(--bg-alt);
+      flex-direction: column;
+      align-items:center;
+      gap: 0;
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .35s ease;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-links.open{ max-height: 320px; }
+    .nav-links a{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .menu-toggle{ display:flex; }
+
+    .hero{ min-height: auto; padding: 50px 5%; }
+    .hero-text h1{ font-size: 2rem; }
+    .hero-text h2{ font-size: 1.05rem; }
+    .hero-img{ width:200px; height:200px; }
+
+    .section-title h2{ font-size: 1.6rem; }
+
+    .info-list{ grid-template-columns: 1fr; }
+
+    .timeline{ padding-left: 22px; }
+    .timeline-item::before{ left:-30px; }
+  }
+
+  /* =====================================================
+     SMALL MOBILE (<=480px)
+  ===================================================== */
+  @media (max-width: 480px){
+    .hero-text h1{ font-size: 1.7rem; }
+    .btn{ padding: 10px 20px; font-size: 0.85rem; }
+    .logo{ font-size: 1.2rem; }
+    section{ padding: 70px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER / NAV ================= -->
+<header>
+  <nav>
+    <a href="#home" class="logo">GURUPRASATH B</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-text fade-up">
+      <p class="greet">Hello, I'm</p>
+      <h1 style="color:var(--text);" >GURUPRASATH</h1>
+      <h2>B.Com Student | Commerce & Finance Enthusiast</h2>
+      <p class="desc">
+        A dedicated Bachelor of Commerce student with a strong interest in accounting,
+        finance, and business management. Eager to learn, grow, and apply commerce
+        concepts in real-world business scenarios.
+      </p>
+      <div class="btn-group">
+        <a href="#achievements" class="btn btn-primary">View Achievements</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container">
+    <div class="section-title fade-up">
+      <p class="tag">Get To Know</p>
+      <h2>About Me</h2>
+    </div>
+    <div class="about-grid">
+      <!-- IMAGE PLACEHOLDER 2 -->
+      <div class="about-img fade-up">
+        <img id="aboutImg" src="" alt="Guruprasath about photo">
+        <p class="placeholder-text" id="aboutPlaceholder">Add Image Link Here</p>
+      </div>
+      <div class="about-text fade-up">
+        <p>
+          I'm Guruprasath, a sincere and disciplined college student pursuing my
+          Bachelor of Commerce (B.Com) degree. I have a strong interest in accounting,
+          taxation, business economics, and financial management.
+        </p>
+        <p>
+          I enjoy learning about how businesses operate, keeping accurate financial
+          records, and staying updated with current economic trends. I aim to build
+          a career in the finance and commerce field.
+        </p>
+        <ul class="info-list">
+          <li><b>Name:</b>Guruprasath B</li>
+          <li><b>Degree:</b> B.Com (Bachelor of Commerce)</li>
+          <li><b>Email:</b>prasathbalu123@email.com</li>
+          <li><b>Location:</b> Ayyanar kovil street,Vallam, Thanjavur, Tamil Nadu</li>
+          <li><b>Status:</b> College Student</li>
+          <li><b>Availability:</b> Open to Internships</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background: var(--bg-alt);">
+  <div class="container">
+    <div class="section-title fade-up">
+      <p class="tag">What I Know</p>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <h3>Accounting & Finance</h3>
+        <div class="skill-bar">
+          <div class="label"><span>Financial Accounting</span><span>85%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="label"><span>Cost & Management Accounting</span><span>75%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="75"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up">
+        <h3>Taxation & Business Law</h3>
+        <div class="skill-bar">
+          <div class="label"><span>Income Tax / GST Basics</span><span>70%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="70"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="label"><span>Business Law</span><span>65%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="65"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up">
+        <h3>Tools & Software</h3>
+        <div class="skill-bar">
+          <div class="label"><span>Tally ERP / Tally Prime</span><span>80%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="80"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="label"><span>MS Excel & MS Office</span><span>85%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="85"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-card fade-up">
+        <h3>Business & Soft Skills</h3>
+        <div class="skill-bar">
+          <div class="label"><span>Business Communication</span><span>82%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="label"><span>Economics & Market Analysis</span><span>78%</span></div>
+          <div class="bar-bg"><div class="bar-fill" data-width="78"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-title fade-up">
+      <p class="tag">Proud Moments</p>
+      <h2>Achievements</h2>
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card fade-up">
+        <div class="achieve-icon">🏆</div>
+        <h3>School First in Economics</h3>
+        <p>
+          Secured the first rank in Economics in the 12th standard at
+          Viraraghava Hr. Sec. School, Thanjavur, Tamil Nadu.
+        </p>
+      </div>
+
+      <div class="achieve-card fade-up">
+        <div class="achieve-icon">🎖️</div>
+        <h3>NSS 'A' Grade</h3>
+        <p>
+          Awarded an 'A' Grade in the National Service Scheme (NSS) during
+          school days for active participation and community service.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education" style="background: var(--bg-alt);">
+  <div class="container">
+    <div class="section-title fade-up">
+      <p class="tag">My Journey</p>
+      <h2>Education</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item fade-up">
+        <span class="date"></span>
+        <h3>B.Com - Bachelor of Commerce</h3>
+        <p>Annai Vailankanni Arts And Science College, Tamil Nadu.</p>
+      </div>
+      <div class="timeline-item fade-up">
+        <span class="date"></span>
+        <h3>Higher Secondary Education (12th) -ComputerCommerce</h3>
+        <p>Viraraghava Hr. Sec. School, Thanjavur, Tamil Nadu — School First in Economics</p>
+      </div>
+      <div class="timeline-item fade-up">
+        <span class="date"></span>
+        <h3>Secondary Education (10th)</h3>
+        <p>Viraraghava Hr. Sec. School, Thanjavur, Tamil Nadu</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title fade-up">
+      <p class="tag">Get In Touch</p>
+      <h2>Contact Me</h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info fade-up">
+        <p>Feel free to reach out for internships, collaborations, or just to say hi!</p>
+        <div class="contact-item">
+          <span class="ic">@</span>prasathbalu123@email.com
+        </div>
+        <div class="contact-item">
+          <span class="ic">☎</span> +91 8838511723
+        </div>
+        <div class="contact-item">
+          <span class="ic">📍</span> Ayyanar kovil Street,Vallam,Thanjavur, Tamil Nadu
+        </div>
+        <div class="social-links">
+          <a href="" title="GitHub">WHATSAPP</a>
+          <a href="#" title="LinkedIn">MOBILE</a>
+          <a href="#" title="Instagram">INSTA</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>&copy; <span id="year">2026</span> Guruprasath. All Rights Reserved.</p>
+</footer>
+
+<button id="scrollTop" title="Go to top">↑</button>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Show images automatically once a src is added to any <img> tag
+  document.querySelectorAll('img').forEach(img => {
+    if (img.getAttribute('src') && img.getAttribute('src').trim() !== '') {
+      img.style.display = 'block';
+      const placeholder = img.nextElementSibling;
+      if (placeholder && placeholder.classList.contains('placeholder-text')) {
+        placeholder.style.display = 'none';
+      }
+    }
+  });
+
+  // Scroll reveal animation
+  const faders = document.querySelectorAll('.fade-up');
+  const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(el => appearOnScroll.observe(el));
+
+  // Animate skill bars when visible
+  const bars = document.querySelectorAll('.bar-fill');
+  const barObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.dataset.width + '%';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(bar => barObserver.observe(bar));
+
+  // Scroll-to-top button
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Contact form (front-end only, no backend)
+  const form = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (formMsg) formMsg.textContent = "Thanks for reaching out! I'll get back to you soon.";
+      form.reset();
+      setTimeout(() => { if (formMsg) formMsg.textContent = ''; }, 4000);
+    });
+  }
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
